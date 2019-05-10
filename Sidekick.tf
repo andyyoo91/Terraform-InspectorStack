@@ -36,7 +36,7 @@ resource "aws_route_table_association" "PU" {
 
 resource "aws_security_group" "EC2_SG" {
   name        = "aws_security_group.EC2_SG"
-  description = "Opening network to the world but Limiting network only within Plus3IT"
+  description = "Security group for Public_subnet, Opening network to the world but Limiting network only within Plus3IT"
   vpc_id      = "${aws_vpc.andy_vpc.id}"
 
   ingress {
@@ -54,7 +54,31 @@ resource "aws_security_group" "EC2_SG" {
   }
 
   tags {
-    Name = "ANDY_EC2_Security_group"
+    Name = "ANDY_EC2_Public_Security_group"
+  }
+}
+
+resource "aws_security_group" "EC2_SG2" {
+  name        = "aws_security_group.EC2_SG2"
+  description = "Security group for Private_subnet"
+  vpc_id      = "${aws_vpc.andy_vpc.id}"
+
+  ingress {
+    from_port   = "0"
+    to_port     = "0"
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = "0"
+    to_port     = "0"
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags {
+    Name = "ANDY_EC2_Private_Security_group"
   }
 }
 
