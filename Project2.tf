@@ -18,7 +18,7 @@ resource "aws_subnet" "Private_Subnet" {
   cidr_block = "${var.private_subnet_cidr}"
 
   tags = {
-    name = "Andy_Private_subnet"
+    Name = "Andy_Private_Subnet"
   }
 }
 
@@ -67,8 +67,7 @@ resource "aws_inspector_resource_group" "Yoo" {
 }
 
 resource "aws_inspector_assessment_target" "Inspector" {
-  name               = "my-assessment target"
-  resource_group_arn = "${aws_inspector_resource_group.Yoo.arn}"
+  name = "my-assessment target"
 }
 
 resource "aws_inspector_assessment_template" "Inspector" {

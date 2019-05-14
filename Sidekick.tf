@@ -20,8 +20,8 @@ resource "aws_route_table" "RT_Public_subnet2" {
   vpc_id = "${aws_vpc.andy_vpc.id}"
 
   route {
-    cidr_block     = "${var.route_table_public_cidr}"
-    nat_gateway_id = "${aws_nat_gateway.NAT_AY.id}"
+    cidr_block = "${var.route_table_public_cidr}"
+    gateway_id = "${aws_internet_gateway.gw.id}"
   }
 
   tags = {

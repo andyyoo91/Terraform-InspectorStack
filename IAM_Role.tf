@@ -19,7 +19,7 @@ POLICY
 
 resource "aws_iam_policy" "run_inspector_policy" {
   name        = "Cloudwatch-events-run-inspector-policy"
-  description = "Cloudwatch even to run inspector"
+  description = "Cloudwatch event to run inspector"
 
   policy = <<POLICY
 {
