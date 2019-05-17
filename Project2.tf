@@ -27,7 +27,7 @@ resource "aws_subnet" "Public_Subnet" {
   cidr_block = "${var.public_subnet_cidr}"
 
   tags {
-    Name = "Andy_Public_Subnet"
+    Project = "Andy_Public_Subnet"
   }
 }
 
@@ -61,13 +61,14 @@ resource "aws_internet_gateway" "gw" {
 
 resource "aws_inspector_resource_group" "Yoo" {
   tags = {
-    Name = "Andy_Private_EC2"
-    Name = "Andy_Public_EC2"
+    Project = "Andy_Public_EC2"
+    Name    = "Andy_Private_EC2"
   }
 }
 
 resource "aws_inspector_assessment_target" "Inspector" {
-  name = "my-assessment target"
+  name               = "my-assessment target"
+  resource_group_arn = "${aws_inspector_resource_group.Yoo.arn}"
 }
 
 resource "aws_inspector_assessment_template" "Inspector" {
